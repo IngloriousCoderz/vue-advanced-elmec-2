@@ -1,28 +1,29 @@
-import { createPinia } from 'pinia'
-import { setActivePinia } from 'pinia'
 import { beforeEach, describe, it, expect, vi } from 'vitest'
-import { useListStore } from './list'
 
 describe('useList', () => {
+  let composable = null
+
   beforeEach(async () => {
-    setActivePinia(createPinia())
+    vi.resetModules()
+    const { useList } = await import('./list')
+    composable = useList
   })
 
   it('starts with default tasks', async () => {
-    const store = useListStore()
+    const { tasks } = composable()
 
-    expect(store.tasks).toHaveLength(3)
+    expect(tasks.value).toHaveLength(3)
   })
 
   it('adds a task', async () => {
-    const store = useListStore()
+    const { tasks, add } = composable()
 
-    store.add('New task')
+    add('New task')
 
     // expect(tasks.value).toHaveLength(4)
     // expect(tasks.value.at(-1).text).toBe('New task')
 
-    expect(store.tasks).toEqual([
+    expect(tasks.value).toEqual([
       { id: 1, text: 'Learn Vue', completed: true },
       { id: 2, text: 'Look for a job', completed: false },
       { id: 3, text: 'Forget everything' },
@@ -34,19 +35,19 @@ describe('useList', () => {
   })
 
   it('toggles completion', async () => {
-    const store = useListStore()
-    const initial = store.tasks[1].completed
+    const { tasks, toggle } = composable()
+    const initial = tasks.value[1].completed
 
-    store.toggle(1)
+    toggle(1)
 
-    expect(store.tasks[1].completed).toBe(!initial)
+    expect(tasks.value[1].completed).toBe(!initial)
   })
 
   it('removes a task', async () => {
-    const store = useListStore()
+    const { tasks, remove } = composable()
 
-    store.remove(0)
+    remove(0)
 
-    expect(store.tasks).toHaveLength(2)
+    expect(tasks.value).toHaveLength(2)
   })
 })

@@ -1,23 +1,28 @@
-import { describe, it, expect } from 'vitest'
+import { beforeEach, describe, it, expect } from 'vitest'
+import { createPinia, setActivePinia } from 'pinia'
 
-import { useForm } from './form'
+import { useFormStore } from './form'
 
 describe('useForm', () => {
-  it('starts with empty text', () => {
-    const { text } = useForm()
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
 
-    expect(text.value).toBe('')
+  it('starts with empty text', () => {
+    const store = useFormStore()
+
+    expect(store.text).toBe('')
   })
 
   it('empties the text', () => {
     // given
-    const { text, empty } = useForm()
-    text.value = 'Hello'
+    const store = useFormStore()
+    store.text = 'Hello'
 
     // when
-    empty()
+    store.empty()
 
     // then
-    expect(text.value).toBe('')
+    expect(store.text).toBe('')
   })
 })

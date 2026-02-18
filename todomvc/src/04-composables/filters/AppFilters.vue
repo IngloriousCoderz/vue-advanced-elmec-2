@@ -1,8 +1,7 @@
 <script setup>
-import { useFiltersStore } from './filters'
+import { useFilters } from './filters'
 
-const { tasksLeft, selectedFilter, isClearCompletedShown, setFilter, clearCompleted } =
-  useFiltersStore()
+const { tasksLeft, selectedFilter, isClearCompletedShown, setFilter, clearCompleted } = useFilters()
 </script>
 
 <template>

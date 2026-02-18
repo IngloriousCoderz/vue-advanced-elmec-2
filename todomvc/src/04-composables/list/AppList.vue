@@ -1,8 +1,8 @@
 <script setup>
 import { useFilters } from '../filters/filters'
-import { useListStore } from './list'
+import { useList } from './list'
 
-const { toggle, remove } = useListStore()
+const { toggle, remove } = useList()
 const { filteredTasks: tasks } = useFilters()
 </script>
 

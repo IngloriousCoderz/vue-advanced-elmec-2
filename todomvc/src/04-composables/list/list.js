@@ -1,13 +1,12 @@
 import { ref } from 'vue'
-import { defineStore } from 'pinia'
 
-export const useListStore = defineStore('list', () => {
-  const tasks = ref([
-    { id: 1, text: 'Learn Vue', completed: true },
-    { id: 2, text: 'Look for a job', completed: false },
-    { id: 3, text: 'Forget everything' },
-  ])
+const tasks = ref([
+  { id: 1, text: 'Learn Vue', completed: true },
+  { id: 2, text: 'Look for a job', completed: false },
+  { id: 3, text: 'Forget everything' },
+])
 
+export function useList() {
   function add(text) {
     const maxId = tasks.value.length ? tasks.value[tasks.value.length - 1].id : 0
     tasks.value.push({ id: maxId + 1, text })
@@ -22,4 +21,4 @@ export const useListStore = defineStore('list', () => {
   }
 
   return { tasks, add, toggle, remove }
-})
+}
