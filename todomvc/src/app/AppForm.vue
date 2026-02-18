@@ -1,18 +1,19 @@
 <script setup>
-defineProps(['text'])
-const emit = defineEmits(['change', 'submit'])
+import { ref } from 'vue'
+
+const emit = defineEmits(['submit'])
+
+const text = ref('')
+
+function handleSubmit() {
+  emit('submit', text.value)
+  text.value = ''
+}
 </script>
 
 <template>
-  <!-- WARNING: 'change' and 'submit' events will trigger real DOM events! -->
-  <form @submit.prevent="emit('submit')">
-    <input
-      type="text"
-      placeholder="What next?"
-      autofocus
-      :value="text"
-      @input="emit('change', $event.target.value)"
-    />
+  <form @submit.prevent="handleSubmit">
+    <input type="text" placeholder="What next?" autofocus v-model="text" />
     <button :disabled="!text">Add</button>
   </form>
 </template>

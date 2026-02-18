@@ -6,6 +6,19 @@ import AppForm from './AppForm.vue'
 import AppHeader from './AppHeader.vue'
 import AppList from './AppList.vue'
 
+// form logic
+
+const text = ref('')
+
+function handleChange(newText) {
+  text.value = newText
+}
+
+function handleSubmit() {
+  add(text.value)
+  text.value = ''
+}
+
 // list logic
 
 const tasks = ref([
@@ -67,7 +80,7 @@ onUpdated(() => {
 <template>
   <AppHeader name="Matteo Antony" />
 
-  <AppForm @submit="add" />
+  <AppForm :text="text" @change="handleChange" @submit="handleSubmit" />
 
   <AppList :tasks="filteredTasks" @spanClick="toggle" @buttonClick="remove" />
 
