@@ -1,0 +1,41 @@
+import { ref } from 'vue'
+import { defineStore } from 'pinia'
+
+import * as api from '../../services/api'
+
+export const useListStore = defineStore('list', () => {
+  const tasks = ref([])
+
+  async function fetch() {
+    tasks.value = await api.fetchTasks()
+  }
+
+  async function add(text) {
+    const createdTask = await api.addTask(text)
+    tasks.value.push(createdTask)
+  }
+
+  async function toggle(index) {
+    const task = tasks.value[index]
+
+    // PUT
+    // const body = { ...task, completed: !task.completed }
+    // const replacedTask = await api.replaceTask(task.id, body)
+    // tasks.value[index] = replacedTask
+
+    // PATCH
+    const body = { completed: !task.completed }
+    const updatedTask = await api.updateTask(task.id, body)
+    tasks.value[index] = updatedTask
+  }
+
+  async function remove(index) {
+    const task = tasks.value[index]
+
+    await api.removeTask(task.id)
+
+    tasks.value.splice(index, 1)
+  }
+
+  return { tasks, fetch, add, toggle, remove }
+})

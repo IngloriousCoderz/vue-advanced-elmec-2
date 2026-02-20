@@ -3,7 +3,7 @@ import { setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { useFiltersStore } from './filters'
 
-describe('useFilters', () => {
+describe('useFiltersStore', () => {
   beforeEach(async () => {
     setActivePinia(createPinia())
   })

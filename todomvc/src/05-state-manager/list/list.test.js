@@ -1,9 +1,9 @@
-import { createPinia } from 'pinia'
-import { setActivePinia } from 'pinia'
-import { beforeEach, describe, it, expect, vi } from 'vitest'
+import { createPinia, setActivePinia } from 'pinia'
+import { beforeEach, describe, it, expect } from 'vitest'
+
 import { useListStore } from './list'
 
-describe('useList', () => {
+describe('useListStore', () => {
   beforeEach(async () => {
     setActivePinia(createPinia())
   })
