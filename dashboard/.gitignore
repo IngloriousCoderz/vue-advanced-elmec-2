@@ -38,9 +38,8 @@ __screenshots__/
 # Vite
 *.timestamp-*-*.mjs
 
-# Module federation
-.__mf__temp/
-
-# Playwiright
 test-results/
 playwright-report/
+
+# Module federation
+.__mf__temp/
