@@ -29,11 +29,13 @@ export function useFilters() {
   }
 
   return {
-    filteredTasks,
-    tasksLeft,
     selectedFilter,
-    setFilter,
+    activeTasks,
+    completedTasks,
+    tasksLeft,
     isClearCompletedShown,
+    filteredTasks,
+    setFilter,
     clearCompleted,
   }
 }

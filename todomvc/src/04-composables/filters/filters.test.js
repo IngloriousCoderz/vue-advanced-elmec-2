@@ -15,21 +15,21 @@ describe('useFilters', () => {
     expect(tasksLeft.value).toBe(2)
   })
 
-  it('filters active tasks', async () => {
+  it('filters active tasks', () => {
     const { filteredTasks, setFilter } = composable()
     setFilter('Active')
 
     expect(filteredTasks.value.every((t) => !t.completed)).toBe(true)
   })
 
-  it('filters completed tasks', async () => {
+  it('filters completed tasks', () => {
     const { filteredTasks, setFilter } = composable()
     setFilter('Completed')
 
     expect(filteredTasks.value.every((t) => t.completed)).toBe(true)
   })
 
-  it('shows clear completed only when needed', async () => {
+  it('shows clear completed only when needed', () => {
     const { isClearCompletedShown } = composable()
     expect(isClearCompletedShown.value).toBe(true)
   })

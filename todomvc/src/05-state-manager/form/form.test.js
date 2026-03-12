@@ -1,5 +1,5 @@
-import { beforeEach, describe, it, expect } from 'vitest'
-import { createPinia, setActivePinia } from 'pinia'
+import { describe, it, expect, beforeEach } from 'vitest'
+import { setActivePinia, createPinia } from 'pinia'
 
 import { useFormStore } from './form'
 

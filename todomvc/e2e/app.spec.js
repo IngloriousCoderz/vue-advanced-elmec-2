@@ -22,6 +22,8 @@ test.describe('Todo App', () => {
 
     await expect(todoPage.todos).toHaveCount(3)
     await expect(todoPage.itemsLeft).toHaveText('2 items left')
+
+    // await expect(page).toHaveScreenshot()
   })
 
   test('add button is disabled when input is empty', async () => {

@@ -1,8 +1,8 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 
-import { useFiltersStore } from '../filters/filters'
 import { useListStore } from './list'
+import { useFiltersStore } from '../filters/filters'
 
 const { toggle, remove } = useListStore()
 const filters = useFiltersStore()

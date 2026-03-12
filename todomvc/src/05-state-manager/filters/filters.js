@@ -1,15 +1,14 @@
+import { storeToRefs, defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { storeToRefs } from 'pinia'
 
 import { useListStore } from '../list/list'
-import { defineStore } from 'pinia'
-
-const selectedFilter = ref('All')
 
 export const useFiltersStore = defineStore('filters', () => {
   const list = useListStore()
   const { tasks } = storeToRefs(list)
   const { remove } = list
+
+  const selectedFilter = ref('All')
 
   const activeTasks = computed(() => tasks.value.filter((task) => !task.completed))
   const completedTasks = computed(() => tasks.value.filter((task) => task.completed))
@@ -34,11 +33,13 @@ export const useFiltersStore = defineStore('filters', () => {
   }
 
   return {
-    filteredTasks,
-    tasksLeft,
     selectedFilter,
-    setFilter,
+    activeTasks,
+    completedTasks,
+    tasksLeft,
     isClearCompletedShown,
+    filteredTasks,
+    setFilter,
     clearCompleted,
   }
 })

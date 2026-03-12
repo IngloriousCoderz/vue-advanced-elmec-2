@@ -1,7 +1,7 @@
 <script setup>
 import { useFilters } from './filters'
 
-const { tasksLeft, selectedFilter, isClearCompletedShown, setFilter, clearCompleted } = useFilters()
+const { selectedFilter, tasksLeft, isClearCompletedShown, setFilter, clearCompleted } = useFilters()
 </script>
 
 <template>

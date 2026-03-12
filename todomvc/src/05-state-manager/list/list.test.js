@@ -1,52 +1,40 @@
 import { createPinia, setActivePinia } from 'pinia'
-import { beforeEach, describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 
 import { useListStore } from './list'
 
-describe('useListStore', () => {
-  beforeEach(async () => {
+describe('useList', () => {
+  beforeEach(() => {
     setActivePinia(createPinia())
   })
 
-  it('starts with default tasks', async () => {
+  it('starts with default tasks', () => {
     const store = useListStore()
 
-    expect(store.tasks).toHaveLength(3)
+    expect(store.tasks).toMatchSnapshot()
   })
 
-  it('adds a task', async () => {
+  it('adds a task', () => {
     const store = useListStore()
 
     store.add('New task')
 
-    // expect(tasks.value).toHaveLength(4)
-    // expect(tasks.value.at(-1).text).toBe('New task')
-
-    expect(store.tasks).toEqual([
-      { id: 1, text: 'Learn Vue', completed: true },
-      { id: 2, text: 'Look for a job', completed: false },
-      { id: 3, text: 'Forget everything' },
-      { id: 4, text: 'New task' },
-    ])
-
-    // snapshot testing
-    // expect(tasks.value).toMatchSnapshot()
+    expect(store.tasks).toMatchSnapshot()
   })
 
-  it('toggles completion', async () => {
+  it('toggles completion', () => {
     const store = useListStore()
-    const initial = store.tasks[1].completed
 
     store.toggle(1)
 
-    expect(store.tasks[1].completed).toBe(!initial)
+    expect(store.tasks).toMatchSnapshot()
   })
 
-  it('removes a task', async () => {
+  it('removes a task', () => {
     const store = useListStore()
 
     store.remove(0)
 
-    expect(store.tasks).toHaveLength(2)
+    expect(store.tasks).toMatchSnapshot()
   })
 })

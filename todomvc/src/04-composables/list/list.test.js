@@ -1,4 +1,4 @@
-import { beforeEach, describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 
 describe('useList', () => {
   let composable = null
@@ -9,45 +9,33 @@ describe('useList', () => {
     composable = useList
   })
 
-  it('starts with default tasks', async () => {
+  it('starts with default tasks', () => {
     const { tasks } = composable()
 
-    expect(tasks.value).toHaveLength(3)
+    expect(tasks.value).toMatchSnapshot()
   })
 
-  it('adds a task', async () => {
+  it('adds a task', () => {
     const { tasks, add } = composable()
 
     add('New task')
 
-    // expect(tasks.value).toHaveLength(4)
-    // expect(tasks.value.at(-1).text).toBe('New task')
-
-    expect(tasks.value).toEqual([
-      { id: 1, text: 'Learn Vue', completed: true },
-      { id: 2, text: 'Look for a job', completed: false },
-      { id: 3, text: 'Forget everything' },
-      { id: 4, text: 'New task' },
-    ])
-
-    // snapshot testing
-    // expect(tasks.value).toMatchSnapshot()
+    expect(tasks.value).toMatchSnapshot()
   })
 
-  it('toggles completion', async () => {
+  it('toggles completion', () => {
     const { tasks, toggle } = composable()
-    const initial = tasks.value[1].completed
 
     toggle(1)
 
-    expect(tasks.value[1].completed).toBe(!initial)
+    expect(tasks.value).toMatchSnapshot()
   })
 
-  it('removes a task', async () => {
+  it('removes a task', () => {
     const { tasks, remove } = composable()
 
     remove(0)
 
-    expect(tasks.value).toHaveLength(2)
+    expect(tasks.value).toMatchSnapshot()
   })
 })

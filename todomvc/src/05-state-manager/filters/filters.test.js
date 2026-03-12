@@ -1,10 +1,9 @@
-import { createPinia } from 'pinia'
-import { setActivePinia } from 'pinia'
+import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { useFiltersStore } from './filters'
 
-describe('useFiltersStore', () => {
-  beforeEach(async () => {
+describe('useFilters', () => {
+  beforeEach(() => {
     setActivePinia(createPinia())
   })
 
@@ -14,22 +13,25 @@ describe('useFiltersStore', () => {
     expect(store.tasksLeft).toBe(2)
   })
 
-  it('filters active tasks', async () => {
+  it('filters active tasks', () => {
     const store = useFiltersStore()
+
     store.setFilter('Active')
 
     expect(store.filteredTasks.every((t) => !t.completed)).toBe(true)
   })
 
-  it('filters completed tasks', async () => {
+  it('filters completed tasks', () => {
     const store = useFiltersStore()
+
     store.setFilter('Completed')
 
     expect(store.filteredTasks.every((t) => t.completed)).toBe(true)
   })
 
-  it('shows clear completed only when needed', async () => {
+  it('shows clear completed only when needed', () => {
     const store = useFiltersStore()
+
     expect(store.isClearCompletedShown).toBe(true)
   })
 

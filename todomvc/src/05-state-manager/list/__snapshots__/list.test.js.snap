@@ -1,0 +1,76 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`useList > adds a task 1`] = `
+[
+  {
+    "completed": true,
+    "id": 1,
+    "text": "Learn Vue",
+  },
+  {
+    "completed": false,
+    "id": 2,
+    "text": "Look for a job",
+  },
+  {
+    "id": 3,
+    "text": "Forget everything",
+  },
+  {
+    "id": 4,
+    "text": "New task",
+  },
+]
+`;
+
+exports[`useList > removes a task 1`] = `
+[
+  {
+    "completed": false,
+    "id": 2,
+    "text": "Look for a job",
+  },
+  {
+    "id": 3,
+    "text": "Forget everything",
+  },
+]
+`;
+
+exports[`useList > starts with default tasks 1`] = `
+[
+  {
+    "completed": true,
+    "id": 1,
+    "text": "Learn Vue",
+  },
+  {
+    "completed": false,
+    "id": 2,
+    "text": "Look for a job",
+  },
+  {
+    "id": 3,
+    "text": "Forget everything",
+  },
+]
+`;
+
+exports[`useList > toggles completion 1`] = `
+[
+  {
+    "completed": true,
+    "id": 1,
+    "text": "Learn Vue",
+  },
+  {
+    "completed": true,
+    "id": 2,
+    "text": "Look for a job",
+  },
+  {
+    "id": 3,
+    "text": "Forget everything",
+  },
+]
+`;
